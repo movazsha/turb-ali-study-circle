@@ -1,0 +1,541 @@
+:root {
+  --bg: #031d45;
+  --bg-deep: #01152f;
+  --surface: rgba(6, 39, 87, 0.72);
+  --surface-strong: rgba(4, 29, 66, 0.9);
+  --text: #ecf3ff;
+  --muted: #bfd0ef;
+  --brand: #f0ac1f;
+  --brand-soft: #ffd67a;
+  --line: rgba(240, 172, 31, 0.25);
+  --shadow: 0 24px 60px rgba(2, 8, 25, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: "Outfit", sans-serif;
+  background: linear-gradient(160deg, var(--bg) 0%, #07285e 45%, var(--bg-deep) 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  width: min(1120px, calc(100% - 2.5rem));
+  margin: 0 auto;
+}
+
+.bg-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(45px);
+  opacity: 0.4;
+}
+
+.blob-1 {
+  width: 420px;
+  height: 420px;
+  background: #0f47aa;
+  top: -110px;
+  left: -120px;
+}
+
+.blob-2 {
+  width: 340px;
+  height: 340px;
+  background: #f0ac1f;
+  bottom: -120px;
+  right: -110px;
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  background: rgba(1, 17, 40, 0.45);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 0;
+  gap: 0.75rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: "Sora", sans-serif;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.brand-logo {
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+  color: var(--brand-soft);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2rem;
+  align-items: center;
+  padding: 4.8rem 0 3.5rem;
+}
+
+.kicker {
+  margin: 0 0 0.9rem;
+  color: var(--brand-soft);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+}
+
+h1,
+h2 {
+  font-family: "Sora", sans-serif;
+  line-height: 1.15;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3.4rem);
+  max-width: 16ch;
+}
+
+h1 span {
+  color: var(--brand);
+}
+
+.lead {
+  margin: 1.15rem 0 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+  max-width: 56ch;
+}
+
+.hero-actions {
+  margin-top: 1.65rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 0.72rem 1.2rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  color: #07142f;
+  background: linear-gradient(140deg, var(--brand) 0%, #ffd16a 100%);
+  box-shadow: 0 12px 26px rgba(240, 172, 31, 0.35);
+}
+
+.btn-ghost,
+.btn-outline {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.hero-card {
+  background: linear-gradient(155deg, rgba(6, 39, 87, 0.68), rgba(2, 23, 54, 0.93));
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  padding: 1.4rem;
+  box-shadow: var(--shadow);
+}
+
+.hero-logo {
+  width: 100%;
+  max-width: 380px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+.tagline {
+  margin: 1rem 0 0;
+  text-align: center;
+  color: var(--brand-soft);
+  font-weight: 500;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding-bottom: 2.8rem;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 1.15rem;
+}
+
+.stat-card h2 {
+  margin: 0;
+  font-size: 1.12rem;
+}
+
+.stat-card p {
+  margin: 0.7rem 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.about-card,
+.about-points article {
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 1.2rem;
+}
+
+.about-card h2 {
+  margin: 0;
+}
+
+.about-card p {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.about-points {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.about-points h3 {
+  margin: 0;
+  font-family: "Sora", sans-serif;
+  font-size: 1.04rem;
+}
+
+.about-points p {
+  margin: 0.55rem 0 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.courses {
+  margin-bottom: 2.5rem;
+}
+
+.section-head h2 {
+  margin: 0;
+}
+
+.section-copy {
+  color: var(--muted);
+  max-width: 62ch;
+  margin-top: 0.7rem;
+}
+
+.course-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+}
+
+.course-card {
+  padding: 1.15rem;
+  border-radius: 16px;
+  background: linear-gradient(155deg, rgba(6, 39, 87, 0.68), rgba(2, 23, 54, 0.93));
+  border: 1px solid var(--line);
+}
+
+.course-card h3 {
+  margin: 0;
+  font-family: "Sora", sans-serif;
+  font-size: 1.08rem;
+}
+
+.course-card p {
+  margin: 0.65rem 0 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.admissions {
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  padding: 2rem;
+  margin-bottom: 2.4rem;
+}
+
+.admissions-form {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+}
+
+.admissions-form label {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.admissions-form input,
+.admissions-form textarea {
+  width: 100%;
+  padding: 0.72rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font: inherit;
+}
+
+.admissions-form textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.admissions-form label:last-of-type {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.contact {
+  margin-bottom: 3.6rem;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  padding: 2rem;
+}
+
+.contact h2 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.contact > p {
+  margin-top: 0.8rem;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.contact-grid {
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+}
+
+.contact-tile {
+  text-decoration: none;
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.contact-tile .label {
+  color: var(--brand-soft);
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.86rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.contact-tile strong {
+  line-height: 1.4;
+}
+
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding: 0.95rem 0 1.25rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.delay-1 {
+  transition-delay: 0.08s;
+}
+
+.delay-2 {
+  transition-delay: 0.16s;
+}
+
+.delay-3 {
+  transition-delay: 0.24s;
+}
+
+@media (max-width: 960px) {
+  .nav {
+    flex-wrap: wrap;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 3.8rem;
+  }
+
+  .hero-card {
+    max-width: 520px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admissions-form {
+    grid-template-columns: 1fr;
+  }
+
+  .admissions-form label:last-of-type,
+  .form-actions {
+    grid-column: auto;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: min(1120px, calc(100% - 1.25rem));
+  }
+
+  .brand span {
+    font-size: 0.91rem;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+  }
+
+  .call-btn {
+    margin-left: auto;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .hero-actions {
+    gap: 0.7rem;
+  }
+
+  .contact {
+    padding: 1.2rem;
+  }
+
+  .admissions {
+    padding: 1.2rem;
+  }
+}
