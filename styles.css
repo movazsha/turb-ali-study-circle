@@ -159,12 +159,15 @@ body {
 }
 
 .coin-fallback {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 50%;
   display: block;
   -webkit-user-drag: none;
   user-select: none;
+  transition: opacity 0.45s ease;
 }
 
 .kicker-center {

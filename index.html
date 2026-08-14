@@ -233,9 +233,30 @@
             rim.position.set(-3, -1.5, -2.5);
             scene.add(rim);
 
-            const tex = new THREE.TextureLoader().load('assets/coin.png?v=3', () =>
-              renderer.render(scene, camera)
-            );
+            const RADIUS = 1;
+            const THICK = 0.16;
+            const geo = new THREE.CylinderGeometry(RADIUS, RADIUS, THICK, 160, 1, false);
+            const edgeMat = new THREE.MeshPhongMaterial({
+              color: 0xc9a45c,
+              specular: 0xffeec0,
+              shininess: 85,
+            });
+            const faceMat = new THREE.MeshLambertMaterial({ color: 0xc9a45c });
+            const faceBackMat = new THREE.MeshLambertMaterial({ color: 0xc9a45c });
+
+            const tex = new THREE.TextureLoader().load('assets/coin.png?v=3', () => {
+              faceMat.map = tex;
+              faceMat.color.set(0xe8e8e8);
+              faceMat.needsUpdate = true;
+              faceBackMat.map = texBack;
+              faceBackMat.color.set(0xe8e8e8);
+              faceBackMat.needsUpdate = true;
+              renderer.render(scene, camera);
+              fallback.style.opacity = '0';
+              setTimeout(() => {
+                fallback.style.display = 'none';
+              }, 500);
+            });
             tex.colorSpace = THREE.SRGBColorSpace;
             tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
             tex.center.set(0.5, 0.5);
@@ -245,17 +266,6 @@
             texBack.center.set(0.5, 0.5);
             texBack.rotation = Math.PI / 2;
             texBack.needsUpdate = true;
-
-            const RADIUS = 1;
-            const THICK = 0.16;
-            const geo = new THREE.CylinderGeometry(RADIUS, RADIUS, THICK, 160, 1, false);
-            const edgeMat = new THREE.MeshPhongMaterial({
-              color: 0xc9a45c,
-              specular: 0xffeec0,
-              shininess: 85,
-            });
-            const faceMat = new THREE.MeshLambertMaterial({ map: tex, color: 0xe8e8e8 });
-            const faceBackMat = new THREE.MeshLambertMaterial({ map: texBack, color: 0xe8e8e8 });
             const coinMesh = new THREE.Mesh(geo, [edgeMat, faceMat, faceBackMat]);
             coinMesh.rotation.x = Math.PI / 2;
 
@@ -322,8 +332,6 @@
               requestAnimationFrame(tick);
             };
             requestAnimationFrame(tick);
-
-            fallback.style.display = 'none';
           } catch (err) {
             canvas.style.display = 'none';
           }
