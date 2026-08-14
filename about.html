@@ -72,10 +72,17 @@
 
     <script>
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      window.scrollTo(0, 0);
+      const toTop = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      toTop();
+      window.addEventListener('load', () => {
+        toTop();
+        setTimeout(toTop, 60);
+        setTimeout(toTop, 250);
+        setTimeout(toTop, 900);
+      });
 
       window.addEventListener('DOMContentLoaded', () => {
-        window.scrollTo(0, 0);
+        toTop();
         document.getElementById('year').textContent = new Date().getFullYear();
 
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
