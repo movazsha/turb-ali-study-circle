@@ -3,6 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      (function () {
+        var de = document.documentElement;
+        de.style.visibility = 'hidden';
+        var shown = false;
+        var show = function () {
+          if (shown) return;
+          shown = true;
+          window.scrollTo(0, 0);
+          de.style.visibility = '';
+        };
+        document.addEventListener('DOMContentLoaded', show, { once: true });
+        setTimeout(show, 1200);
+      })();
+    </script>
     <title>About — Turab Ali Study Circle</title>
     <meta
       name="description"
