@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      document.documentElement.className += ' js';
       (function () {
         var de = document.documentElement;
         de.style.visibility = 'hidden';
@@ -244,19 +245,25 @@
             const faceMat = new THREE.MeshLambertMaterial({ color: 0xc9a45c });
             const faceBackMat = new THREE.MeshLambertMaterial({ color: 0xc9a45c });
 
-            const tex = new THREE.TextureLoader().load('assets/coin.png?v=3', () => {
-              faceMat.map = tex;
-              faceMat.color.set(0xe8e8e8);
-              faceMat.needsUpdate = true;
-              faceBackMat.map = texBack;
-              faceBackMat.color.set(0xe8e8e8);
-              faceBackMat.needsUpdate = true;
-              renderer.render(scene, camera);
-              fallback.style.opacity = '0';
-              setTimeout(() => {
-                fallback.style.display = 'none';
-              }, 500);
-            });
+            const tex = new THREE.TextureLoader().load(
+              'assets/coin.png?v=3',
+              () => {
+                faceMat.map = tex;
+                faceMat.color.set(0xe8e8e8);
+                faceMat.needsUpdate = true;
+                faceBackMat.map = texBack;
+                faceBackMat.color.set(0xe8e8e8);
+                faceBackMat.needsUpdate = true;
+                renderer.render(scene, camera);
+                canvas.style.opacity = '1';
+                requestAnimationFrame(tick);
+              },
+              undefined,
+              () => {
+                canvas.style.opacity = '1';
+                requestAnimationFrame(tick);
+              }
+            );
             tex.colorSpace = THREE.SRGBColorSpace;
             tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
             tex.center.set(0.5, 0.5);
@@ -331,10 +338,12 @@
               renderer.render(scene, camera);
               requestAnimationFrame(tick);
             };
-            requestAnimationFrame(tick);
           } catch (err) {
             canvas.style.display = 'none';
+            if (fallback) fallback.style.opacity = '1';
           }
+        } else if (fallback) {
+          fallback.style.opacity = '1';
         }
 
         // ----- admissions form: WhatsApp / email -----
