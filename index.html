@@ -145,7 +145,11 @@
     </footer>
 
     <script>
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      window.scrollTo(0, 0);
+
       window.addEventListener('DOMContentLoaded', () => {
+        window.scrollTo(0, 0);
         document.getElementById('year').textContent = new Date().getFullYear();
 
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
