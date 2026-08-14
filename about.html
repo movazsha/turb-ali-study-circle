@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — Turab Ali Study Circle</title>
+    <meta
+      name="description"
+      content="The story behind Turab Ali Study Circle, Mamidikuduru, Andhra Pradesh."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+    ></script>
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true"></div>
+    <div class="frame" aria-hidden="true"></div>
+
+    <header class="site-nav">
+      <a class="wordmark" href="index.html">Turab Ali Study Circle</a>
+      <nav class="nav-links">
+        <a href="about.html" class="current">About</a>
+        <a href="tel:+919505500450">Call</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="about-hero">
+        <img
+          class="memorial-photo"
+          src="assets/turab-ali.png"
+          alt="Turab Ali"
+          id="aboutCoin"
+        />
+        <p class="dedication" id="aboutKicker">
+          To the most beautiful soul ever to grace this earth
+        </p>
+        <h1 id="aboutTitle"><span class="name-gold">Mohammad</span> Turab <em>Ali</em></h1>
+        <div class="poem rise">
+          <p>
+            To the one who never left us, not even for a breath.<br />
+            To the soul forever woven into our hearts.<br />
+            To the one whose kindness knows neither end nor measure.<br />
+            To the one who loved us, and still loves us, as no one ever did.
+          </p>
+          <p>
+            Here is a little offering of love — a mere speck beside the boundless love you
+            have poured upon us — dedicated to the one who is, and shall always be,
+            everything to us.
+          </p>
+          <p class="signature">— Baba, Ammi &amp; Bhayya</p>
+        </div>
+        <div class="rule" aria-hidden="true"></div>
+        <p class="rise" style="margin-top: 3rem">
+          <a class="text-link" href="index.html">Back to home</a>
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> Turab Ali Study Circle. Knowledge is power.</p>
+    </footer>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const hasGsap = typeof window.gsap !== 'undefined';
+
+        if (!reduceMotion && hasGsap) {
+          const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
+          intro
+            .from('#aboutCoin', { opacity: 0, scale: 0.85, duration: 1.2 })
+            .from('#aboutKicker', { opacity: 0, y: 22, duration: 0.8 }, '-=0.7')
+            .from('#aboutTitle', { opacity: 0, y: 34, duration: 1 }, '-=0.55');
+
+          if (typeof window.ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.utils.toArray('.rise').forEach((el) => {
+              gsap.from(el, {
+                opacity: 0,
+                y: 30,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: el, start: 'top 90%' },
+              });
+            });
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
